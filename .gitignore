@@ -1,0 +1,4 @@
+node_modules/
+Task Completion-win32-x64/
+.temp/
+package-lock.json

@@ -1,0 +1,4 @@
+{
+  "ignore": ["images/"],
+  "ext": "js, html, css"
+}

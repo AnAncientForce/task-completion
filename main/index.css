@@ -1,0 +1,246 @@
+html,
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: white;
+  text-align: center;
+  pointer-events: none;
+}
+
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.25) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.image_shower {
+  pointer-events: none;
+  position: fixed; /* Use fixed positioning for full-page coverage */
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Set height to 100% for full-page coverage */
+  object-fit: cover;
+  animation: fadein 3s;
+  opacity: 1;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(150, 150, 150);
+  border-radius: 5px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Horizontally center items */
+  align-items: center; /* Vertically center items */
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+#task-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.task {
+  background-color: powderblue;
+  border: 5px solid silver;
+  height: 40vh;
+  width: 40vw;
+  font-size: xx-large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+  overflow: hidden;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255, 0, 0),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 10s infinite linear;
+}
+
+.txt {
+  
+}
+
+.task.completed {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(0, 255, 0),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 10s infinite linear;
+}
+
+
+
+
+.status {
+  height: 35%;
+  width: auto;
+  border: 4px dotted white;
+  border-radius: 50%;
+  padding: 2.5%;
+  margin: 2.5%;
+  line-height: 10vh;
+}
+
+
+.task.highlighted {
+  border: 8px dotted skyblue;
+}
+
+#tasks-completed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5%;
+  font-size: xx-large;
+  background-color: darkcyan;
+  border: 4px solid white;
+  opacity: 0.75;
+  padding: 0.5%;
+}
+
+
+/* ========================= diamond anim ========================= */
+
+
+#diamond {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border: 4px solid white;
+  background-color: skyblue;
+  top: 15%;
+  transform: translateX(200%); /* Move off the right side of the screen */
+  transform-origin: 50% 50%; /* Set the rotation origin to the center */
+  text-align: center; /* Center the text horizontally */
+  line-height: 500px; /* Adjust line-height to center the text vertically */
+
+  transition: opacity 0.5s ease-in;
+  opacity: 0;
+}
+
+#diamond-txt {
+  color: white;
+  font-size: xx-large;
+  transform: rotate(-45deg); /* Counter-rotate the text */
+  transform-origin: 50% 50%; /* Set the rotation origin to the center */
+  margin: 0; /* Remove default margin */
+}
+
+
+
+#diamond.animate1 {
+  transition: opacity 0.5s ease-in;
+  opacity: 1;
+
+  animation: anim1 0.5s ease-in forwards;
+}
+
+#diamond.animate2 {
+  opacity: 1;
+  
+  animation: anim2 0.5s ease-out forwards;
+}
+
+@keyframes anim1 {
+  to {
+    transform: translateX(50%) rotate(45deg); /* Move from right to left */
+  }
+}
+
+@keyframes anim2 {
+  from {
+    transform: translateX(50%) rotate(45deg); /* Start from the final position of anim1 */
+  }
+  to {
+    transform: translateX(-100%) rotate(90deg); /* Continue moving from right to left */
+    /* + 50% so cannot be seen after animation finish */
+  }
+}
+
+
+/* ========================= rainbow anim ========================= */
+
+#rainbow {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  transition: opacity 1s ease-out;
+  opacity: 0;
+}
+#rainbow.on {
+  transition: opacity 1s ease-in;
+  opacity: 1;
+
+  background: linear-gradient(to right, #ff0000, #ff9900, #ffff00, #33cc33, #3399ff, #6633cc);
+  background-size: 600% 100%;
+  animation: rainbowAnimation 5s linear infinite;
+}
+
+
+@keyframes rainbowAnimation {
+0% {
+  background-position: 0 0;
+}
+100% {
+  background-position: 600% 0;
+}
+}
+
+
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

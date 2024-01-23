@@ -1,0 +1,22 @@
+[
+  {
+    "college": [
+      {
+        "id": "Does my phone have sufficient battery?",
+        "completed": false
+      },
+      {
+        "id": "Have I packed my lunchbox?",
+        "completed": false
+      },
+      {
+        "id": "Have I packed my water bottle?",
+        "completed": false
+      },
+      {
+        "id": "Have I packed my mouse?",
+        "completed": false
+      }
+    ]
+  }
+]

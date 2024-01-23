@@ -1,0 +1,24 @@
+{
+  "name": "task-completion",
+  "productName": "Task Completion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main/node.js",
+  "scripts": {
+    "start": "electron .",
+    "splash": "electron splash/node.js",
+    "watch": "nodemon --exec electron .",
+    "build": "electron-packager ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^25.4.0"
+  },
+  "dependencies": {
+    "electron-packager": "^17.1.2",
+    "play-sound": "^1.1.6",
+    "sound-play": "^1.1.0"
+  }
+}
