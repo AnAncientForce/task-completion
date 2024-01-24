@@ -1,21 +1,57 @@
 [
   {
+    "bind": [
+      {
+        "day": "monday",
+        "link": "none"
+      },
+      {
+        "day": "tuesday",
+        "link": "none"
+      },
+      {
+        "day": "wednesday",
+        "link": "college"
+      },
+      {
+        "day": "thursday",
+        "link": "college"
+      },
+      {
+        "day": "friday",
+        "link": "college"
+      },
+      {
+        "day": "saturday",
+        "link": "weekend"
+      },
+      {
+        "day": "sunday",
+        "link": "weekend"
+      }
+    ],
     "college": [
       {
-        "id": "Does my phone have sufficient battery?",
-        "completed": false
+        "task": "Does my phone have sufficient battery?",
+        "completed": true
       },
       {
-        "id": "Have I packed my lunchbox?",
-        "completed": false
+        "task": "Have I packed my lunchbox?",
+        "completed": true
       },
       {
-        "id": "Have I packed my water bottle?",
-        "completed": false
+        "task": "Have I packed my water bottle?",
+        "completed": true
       },
       {
-        "id": "Have I packed my mouse?",
-        "completed": false
+        "task": "Have I packed my mouse?",
+        "completed": true
+      }
+    ],
+    "weekend": [
+      {
+        "task": "Am I having fun?",
+        "completed": true
       }
     ]
   }

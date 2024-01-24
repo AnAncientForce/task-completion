@@ -15,6 +15,40 @@ var currentIndex = -1;
 var childDivs;
 var total_tasks = 0;
 var completed_tasks = 0;
+var field_to_load;
+
+function today() {
+  const currentDate = new Date();
+  const dayOfWeek = currentDate.getDay();
+  const daysOfWeek = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
+  const currentDay = daysOfWeek[dayOfWeek];
+  return currentDay;
+}
+
+function setup() {
+  let jsonData = JSON.parse(fs.readFileSync(json_file));
+
+  const field = "bind";
+  const day = today();
+
+  if (jsonData.length > 0 && jsonData[0][field]) {
+    jsonData[0][field].forEach((item) => {
+      if (item.day === day) {
+        console.log(item.day);
+        field_to_load = item.link;
+        console.log("Loading Field:", field_to_load);
+      }
+    });
+  }
+}
 
 function write_json(args) {
   var field = args?.field;
@@ -32,9 +66,9 @@ function write_json(args) {
       if (args?.init) {
         item.completed = false;
       } else {
-        console.log(item.id);
+        console.log(item.task);
         console.log(txt);
-        if (item.id === txt) {
+        if (item.task === txt) {
           console.log("Matched.");
 
           if (item.completed) {
@@ -78,7 +112,7 @@ function read_json(field) {
 
   if (jsonData.length > 0 && jsonData[0][field]) {
     jsonData[0][field].forEach((item) => {
-      append_task(item.id);
+      append_task(item.task);
       total_tasks++;
     });
   }
@@ -86,7 +120,7 @@ function read_json(field) {
 
   // reset all tasks to false
   write_json({
-    field: "college",
+    field: field_to_load,
     init: true,
   });
 }
@@ -145,7 +179,7 @@ function assign_task_complete() {
 
   if (statusImage) {
     write_json({
-      field: "college",
+      field: field_to_load,
       txt: childDivs[currentIndex].textContent,
       task_div: childDivs[currentIndex],
       init: false,
@@ -199,9 +233,8 @@ function play_anim(anim) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // create_task_json();
-  read_json("college");
-
+  setup();
+  read_json(field_to_load);
   setTimeout(() => {
     // play_anim("completed");
   }, 1500);
