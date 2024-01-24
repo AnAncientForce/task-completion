@@ -30,6 +30,7 @@ function today() {
     "saturday",
   ];
   const currentDay = daysOfWeek[dayOfWeek];
+  document.getElementById("day").textContent = currentDay;
   return currentDay;
 }
 
@@ -76,7 +77,7 @@ function write_json(args) {
             completed_tasks--;
             task_div.classList.remove("completed");
             task_div.classList.add("uncompleted");
-            get_status_img().src = "../assets/images/mark.png";
+            get_status_img().src = "../assets/images/mark2.png";
           } else {
             item.completed = true;
             completed_tasks++;
@@ -84,6 +85,10 @@ function write_json(args) {
             task_div.classList.add("completed");
             get_status_img().src = "../assets/images/checkmark.png";
           }
+          task_div.querySelector(".status").classList.add("rotate");
+          setTimeout(() => {
+            task_div.querySelector(".status").classList.remove("rotate");
+          }, 1 * 1000);
           console.log("completed_tasks", completed_tasks);
           console.log(item.completed);
           break;
@@ -137,7 +142,7 @@ function append_task(str) {
 
   const img = document.createElement("img");
   img.classList.add("status");
-  img.src = "../assets/images/mark.png";
+  img.src = "../assets/images/mark2.png";
   div.appendChild(img);
 }
 
