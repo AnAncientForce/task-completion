@@ -17,12 +17,13 @@ function createWindow() {
     width: 1250,
     height: 750,
     icon: "assets/task_list_19659.ico",
+    fullscreen: utilities.readJSONValue("fullscreen"),
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
     },
   });
-  if (utilities.readJSONValue("full_screen")) {
+  if (utilities.readJSONValue("fullscreen")) {
     mainWindow.maximize();
   }
   if (utilities.readJSONValue("developer_mode")) {

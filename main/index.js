@@ -67,11 +67,7 @@ function write_json(args) {
       if (args?.init) {
         item.completed = false;
       } else {
-        console.log(item.task);
-        console.log(txt);
         if (item.task === txt) {
-          console.log("Matched.");
-
           if (item.completed) {
             item.completed = false;
             completed_tasks--;
@@ -89,11 +85,7 @@ function write_json(args) {
           setTimeout(() => {
             task_div.querySelector(".status").classList.remove("rotate");
           }, 1 * 1000);
-          console.log("completed_tasks", completed_tasks);
-          console.log(item.completed);
           break;
-        } else {
-          console.log("Did not match.");
         }
       }
     }
@@ -146,7 +138,7 @@ function append_task(str) {
   div.appendChild(img);
 }
 
-function cycle_tasks() {
+function cycle_tasks(direction) {
   if (currentIndex === -1) {
     // pre-highlight the first task
     currentIndex = 0;
@@ -155,9 +147,15 @@ function cycle_tasks() {
     return;
   }
 
+  if (direction === -1) {
+    currentIndex = (currentIndex - 1 + childDivs.length) % childDivs.length;
+  } else {
+    currentIndex = (currentIndex + 1) % childDivs.length;
+  }
+
   childDivs = document.getElementById("task-container").children;
-  childDivs[currentIndex].classList.remove("highlighted");
-  currentIndex = (currentIndex + 1) % childDivs.length;
+  childDivs = Array.from(childDivs);
+  childDivs.forEach((div) => div.classList.remove("highlighted"));
   childDivs[currentIndex].classList.add("highlighted");
   childDivs[currentIndex].scrollIntoView({
     behavior: "smooth",
@@ -241,12 +239,12 @@ document.addEventListener("DOMContentLoaded", () => {
   setup();
   read_json(field_to_load);
   setTimeout(() => {
-    // play_anim("completed");
+    //play_anim("completed");
   }, 1500);
 });
 
 document.addEventListener("keydown", function (event) {
-  console.log(event.key);
+  // console.log(event.key);
   switch (event.key) {
     case "ArrowLeft":
       cycle_tasks(-1);
